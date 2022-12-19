@@ -1,6 +1,7 @@
 let elRow = document.querySelector(".js_row");
 let elCard = document.querySelector(".card-up");
 let elSelect = document.querySelector(".form-select");
+let elSelectSort = document.querySelector(".form-sort");
 let elInput = document.querySelector(".js_input");
 
 function filmFunc(array, node) {
@@ -87,12 +88,45 @@ elSelect.addEventListener("change", function (evt) {
 
 // INPUT SEARCH
 let newInput = [];
-elInput.addEventListener('keyup', function() {
+elInput.addEventListener("keyup", function () {
   newInput = [];
   films.forEach((item) => {
-    if (item.title.toLocaleLowerCase().includes(elInput.value.toLocaleLowerCase())) {
+    if (
+      item.title.toLocaleLowerCase().includes(elInput.value.toLocaleLowerCase())
+    ) {
       newInput.push(item);
     }
   });
   filmFunc(newInput, elRow);
-})
+});
+
+//* Sort
+let newSorted = [];
+elSelectSort.addEventListener("change", function () {
+  newSorted = [];
+  films.forEach((el) => {
+    newSorted.push(el);
+    newSorted.sort(
+      (a, b) =>
+        a.title.toUpperCase().charCodeAt(0) -
+        b.title.toUpperCase().charCodeAt(0)
+    );
+  });
+  console.log(newSorted);
+
+  if (elSelectSort.value === "a_z") {
+    newSorted.sort(
+      (a, b) =>
+        a.title.toUpperCase().charCodeAt(0) -
+        b.title.toUpperCase().charCodeAt(0)
+    );
+  }
+  if (elSelectSort.value === "z_a") {
+    newSorted.sort(
+      (a, b) =>
+        b.title.toUpperCase().charCodeAt(0) -
+        a.title.toUpperCase().charCodeAt(0)
+    );
+  }
+  filmFunc(newSorted, elRow);
+});
