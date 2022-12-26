@@ -16,22 +16,33 @@
 <body>
 
     <div class="container">
+        <div class="bookmark-wrapper shadow-md">
+            <h1>Bookmarked lists <i class="fa-solid fa-bookmark"></i></h1>
+            <ul class="list-group"></ul>
+        </div>
         <small class="text-danger text-center mt-2">Warn: Working test mode</small>
+        <button class="text-right mx-auto d-block border-secondary border-1 mode"><img class="mode-img"
+                src="./images/dark-mode.svg" alt="Dark mode"></button>
         <h1 class='mb-5 mt-2 text-white text-center'>TV Movies</h1>
         <form>
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     <select class="form-select mb-5 p-3 border-secondary border-1">
                         <option value="All">All</option>
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <select class="form-sort form-select mb-5 p-3 border-secondary border-1">
                         <option selected disabled>Sort by</option>
                         <option value="all">All</option>
                         <option value="a_z">a_Z</option>
                         <option value="z_a">z_A</option>
                     </select>
+                </div>
+                <div class="col-2">
+                    <button class="form-bookmark mx-auto d-block p-3 w-75" type="button">
+                        <i class="fa-regular fa-bookmark icon"></i>
+                    </button>
                 </div>
                 <div class="col-4">
                     <input class="form-control p-3 border-secondary border-1 js_input" placeholder="Search films.."

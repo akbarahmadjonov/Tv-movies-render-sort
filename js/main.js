@@ -3,30 +3,57 @@ let elCard = document.querySelector(".card-up");
 let elSelect = document.querySelector(".form-select");
 let elSelectSort = document.querySelector(".form-sort");
 let elInput = document.querySelector(".js_input");
+let elModeBtn = document.querySelector(".mode");
+let elBookmarkList = document.querySelector(".list-group");
+let elBookMarkWrapper = document.querySelector(".bookmark-wrapper");
+let elBookMarkBtn = document.querySelector(".form-bookmark");
+
+// Dark mode
+let theme = false;
+
+elModeBtn.addEventListener("click", function () {
+  theme = !theme;
+
+  const bgTheme = theme ? "dark" : "light";
+  window.localStorage.setItem("theme", bgTheme);
+  changeTheme();
+});
+function changeTheme() {
+  if (window.localStorage.getItem("theme") == "dark") {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+}
+changeTheme();
+// Dark mode
 
 function filmFunc(array, node) {
   elRow.innerHTML = "";
   array.forEach((el) => {
-    var elCard = document.createElement("div");
+    let newBook = document.createElement("i");
+    newBook.setAttribute("class", "fa-solid fa-bookmark fs-3");
+    let elCard = document.createElement("div");
     elCard.setAttribute("class", "col-12 col-sm-12 col-md-3");
     elCard.innerHTML = `
-      <div class="card-bt p-4 border border-1">
-      <img src="${
-        el.poster
-      }" width='200' class="card border-0 mx-auto d-block mb-3" alt="Card image">
+    <div class="card-bt p-4 border border-1">
+    <img src="${
+      el.poster
+    }" width='200' class="card border-0 mx-auto d-block mb-3" alt="Card image">
           <div class="card-body text-center">
           <hr class='text-white'>
-              <div>
-                  <span class='card-text text-white'>ID:${el.id}</span>
+          <div>
+          <i style="color: black;" data-id="bookBntn" class="fa-solid fa-bookmark fs-3 me-3"></i>
+          <span class='card-text text-white'>ID:${el.id}</span>
                   <i style="color: gold;" class="fa-solid fa-star"></i>
                   <span class='spans text-white'>${Math.floor(
                     Math.random() * 9 + 2
                   )}</span>
               </div>
               <div>
-                  <p class='card-text text-secondary'>${Math.floor(
-                    Math.random() * 9 + 2
-                  )} Seasons</p>
+              <p class='card-text text-secondary'>${Math.floor(
+                Math.random() * 9 + 2
+              )} Seasons</p>
                   <p class='card-text text-white'>Title: ${el.title}</p>
                   <p class='card-text text-white'>Release date: ${
                     el.release_date
@@ -34,7 +61,7 @@ function filmFunc(array, node) {
               </div>
           </div>
           </div>
-      `;
+          `;
 
     node.appendChild(elCard);
   });
@@ -130,3 +157,9 @@ elSelectSort.addEventListener("change", function () {
   }
   filmFunc(newSorted, elRow);
 });
+
+// Bookmark
+elBookMarkBtn.addEventListener("click", () => {
+  elBookMarkWrapper.classList.toggle("bookmark-wrapper-active");
+});
+// Bookmark

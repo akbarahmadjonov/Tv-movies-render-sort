@@ -1,10 +1,59 @@
-body {
-  background: linear-gradient(
+:root {
+  --main-bg: linear-gradient(
     112.1deg,
     rgb(27, 32, 49) 11.4%,
     rgb(13, 55, 190) 70.2%
   );
+}
+
+.dark {
+  --main-bg: linear-gradient(
+    112.1deg,
+    rgb(72, 115, 255) 11.4%,
+    rgb(241, 12, 62) 70.2%
+  );
+}
+
+.mode {
+  border: none;
+  background-color: transparent;
+}
+
+.mode-img {
+  width: 50px;
+}
+
+body {
+  background: var(--main-bg);
   font-family: sans-serif;
+}
+
+.bookmark-wrapper {
+  position: fixed;
+  right: 0;
+  top: 30%;
+  padding: 40px;
+  height: 10%;
+  visibility: hidden;
+  z-index: 999;
+  background-color: #fff;
+  /* overflow: auto; */
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.js-book-icon {
+  color: red;
+  cursor: pointer;
+}
+
+.bookmark-wrapper-active {
+  visibility: visible;
+  height: 20%;
+}
+
+.bookmark-wrapper h1 {
+  text-align: center;
 }
 
 .card-up {
@@ -24,6 +73,17 @@ body {
 .form-control {
   background-color: rgb(21, 30, 58);
   border: 1px solid rgb(21, 30, 58);
+}
+
+.form-bookmark {
+  background-color: rgb(21, 30, 58);
+  border: 1px solid rgb(21, 30, 58);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.icon {
+  max-height: 50px;
 }
 
 .form-control:focus {
