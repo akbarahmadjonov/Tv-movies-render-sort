@@ -42,6 +42,16 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
+.js-book {
+  cursor: pointer;
+}
+
+.js-bookbtn {
+  display: block;
+  margin-top: -70px !important;
+  margin-left: 10px;
+}
+
 .js-book-icon {
   color: red;
   cursor: pointer;

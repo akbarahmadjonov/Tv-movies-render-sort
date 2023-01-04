@@ -31,10 +31,8 @@ changeTheme();
 function filmFunc(array, node) {
   elRow.innerHTML = "";
   array.forEach((el) => {
-    let newBook = document.createElement("i");
-    newBook.setAttribute("class", "fa-solid fa-bookmark fs-3");
     let elCard = document.createElement("div");
-    elCard.setAttribute("class", "col-12 col-sm-12 col-md-3");
+    elCard.setAttribute("class", "mb-5 col-12 col-sm-12 col-md-3");
     elCard.innerHTML = `
     <div class="card-bt p-4 border border-1">
     <img src="${
@@ -43,7 +41,6 @@ function filmFunc(array, node) {
           <div class="card-body text-center">
           <hr class='text-white'>
           <div>
-          <i style="color: black;" data-id="bookBntn" class="fa-solid fa-bookmark fs-3 me-3"></i>
           <span class='card-text text-white'>ID:${el.id}</span>
                   <i style="color: gold;" class="fa-solid fa-star"></i>
                   <span class='spans text-white'>${Math.floor(
@@ -63,6 +60,14 @@ function filmFunc(array, node) {
           </div>
           `;
 
+    let newBookBtn = document.createElement("button");
+    newBookBtn.setAttribute(
+      "class",
+      'border border-0 bg-transparent js-bookbtn fa-solid fa-bookmark fs-3 me-3 jsBookmarkAdd"'
+    );
+    newBookBtn.dataset.bookId = el.id;
+
+    elCard.appendChild(newBookBtn);
     node.appendChild(elCard);
   });
 }
@@ -109,7 +114,7 @@ elSelect.addEventListener("change", function (evt) {
     });
     filmFunc(newArr, elRow);
   } else {
-    filmFunc(films, elRow);
+    filmFunc(film, elRow);
   }
 });
 
@@ -163,3 +168,15 @@ elBookMarkBtn.addEventListener("click", () => {
   elBookMarkWrapper.classList.toggle("bookmark-wrapper-active");
 });
 // Bookmark
+
+let newBook = [];
+elBookmarkList.addEventListener("click", function (evt) {
+  evt.preventDefault();
+
+  if (evt.target.matches(".jsBookmarkAdd")) {
+    const getId = evt.target.dataset.bookId;
+    console.log(getId);
+    // const foundIndex = films.findIndex((el) => el.id == getId);
+    // newBook.push(foundIndex);
+  }
+});
