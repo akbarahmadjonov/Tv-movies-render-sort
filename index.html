@@ -14,7 +14,9 @@
 </head>
 
 <body>
-
+    <div class="alert alert-success alert d-none" role="alert">
+        Film successfully added to your bookmark!
+    </div>
     <div class="container">
         <div class="bookmark-wrapper shadow-md p-3">
             <h1>Bookmarked lists <i class="fa-solid fa-bookmark"></i></h1>
@@ -40,8 +42,10 @@
                     </select>
                 </div>
                 <div class="col-2">
-                    <button class="form-bookmark mx-auto d-block p-3 w-75" type="button">
-                        <i class="fa-regular fa-bookmark icon"></i>
+                    <button class="form-bookmark mx-auto d-block p-3 w-75 border-secondary border-1" type="button">
+                        <i class="fa-regular fa-bookmark icon d-block"></i>
+                        <h5 class="bookmark-new d-none"><span class="badge bg-danger"><i
+                                    class="fa-regular fa-bookmark"></i> New added</span></h5>
                     </button>
                 </div>
                 <div class="col-4">
@@ -49,7 +53,7 @@
                         autofocus type="search">
                 </div>
                 <div class="col-2">
-                    <button  class="w-100 btn btn-danger p-3">Find</button>
+                    <button class="w-100 btn btn-danger p-3">Find</button>
                 </div>
             </div>
         </form>

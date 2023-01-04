@@ -40,6 +40,17 @@ body {
   /* overflow: auto; */
   border-radius: 10px;
   transition: all 0.5s ease-in-out;
+  overflow: auto;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  margin: 0 auto;
+  z-index: 999;
 }
 
 .js-book {

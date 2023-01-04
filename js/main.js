@@ -7,6 +7,9 @@ let elModeBtn = document.querySelector(".mode");
 let elBookmarkList = document.querySelector(".list-group");
 let elBookMarkWrapper = document.querySelector(".bookmark-wrapper");
 let elBookMarkBtn = document.querySelector(".form-bookmark");
+let elBookHtmlIcon = document.querySelector(".icon");
+let elBookmarkNewIcon = document.querySelector(".bookmark-new");
+let elBookmarkSucces = document.querySelector(".alert");
 
 // Dark mode
 let theme = false;
@@ -27,6 +30,8 @@ function changeTheme() {
 }
 changeTheme();
 // Dark mode
+
+let film = [];
 
 function filmFunc(array, node) {
   elRow.innerHTML = "";
@@ -63,16 +68,16 @@ function filmFunc(array, node) {
     let newBookBtn = document.createElement("button");
     newBookBtn.setAttribute(
       "class",
-      'border border-0 bg-transparent js-bookbtn fa-solid fa-bookmark fs-3 me-3 jsBookmarkAdd"'
+      "border border-0 bg-transparent js-bookbtn fa-solid fa-bookmark fs-3 me-3 js-addBook"
     );
-    newBookBtn.dataset.bookId = el.id;
+    newBookBtn.dataset.bookmark = el.id;
 
     elCard.appendChild(newBookBtn);
     node.appendChild(elCard);
   });
 }
 
-filmFunc(films, elRow);
+filmFunc(film, elRow);
 
 let filmArr = [];
 
@@ -169,14 +174,23 @@ elBookMarkBtn.addEventListener("click", () => {
 });
 // Bookmark
 
-let newBook = [];
-elBookmarkList.addEventListener("click", function (evt) {
-  evt.preventDefault();
+let newBook = new Set();
+elRow.addEventListener("click", function (evt) {
+  if (evt.target.matches(".js-addBook")) {
+    const getId = evt.target.dataset.bookmark;
+    const foundTitle = films.find((el) => el.id == getId);
+    newBook.add(foundTitle);
 
-  if (evt.target.matches(".jsBookmarkAdd")) {
-    const getId = evt.target.dataset.bookId;
-    console.log(getId);
-    // const foundIndex = films.findIndex((el) => el.id == getId);
-    // newBook.push(foundIndex);
+    const newLi = document.createElement("li");
+    newLi.className = "list-group-item";
+    newLi.innerHTML = `<i class='fa-regular fa-bookmark'></i> Your liked film: ${foundTitle.title}`;
+
+    elBookmarkList.appendChild(newLi);
+    elBookHtmlIcon.classList.add("d-none");
+    elBookmarkNewIcon.classList.remove("d-none");
+    elBookmarkSucces.classList.remove("d-none");
+    setTimeout(() => {
+      elBookmarkSucces.classList.add("d-none");
+    }, 2000);
   }
 });
